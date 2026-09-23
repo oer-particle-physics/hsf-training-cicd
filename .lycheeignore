@@ -1,0 +1,19 @@
+# Add exact per-repository exceptions here for trusted upstream URLs that are
+# known to fail automated validation. Keep entries narrow and documented.
+#
+# Example:
+# https://cmsweb.cern.ch/das/
+
+# docs.gitlab.com serves lychee a 403 and bounces the request through a
+# GitLab OAuth sign-in redirect; the same URLs open fine in a browser.
+https://docs.gitlab.com/ee/ci/pipelines/job_artifacts.html
+https://docs.gitlab.com/ee/ci/yaml/README.html#special-yaml-features
+
+# docs.gitlab.com has reorganised these pages, so the anchors no longer
+# resolve even though the pages themselves redirect successfully.
+https://docs.gitlab.com/ee/administration/instance_limits.html#number-of-jobs-in-active-pipelines
+https://docs.gitlab.com/ee/ci/yaml/#configuration-parameters
+
+# Dead personal project on CERN GitLab, kept as the worked example that
+# illustrates the `<project-url>/-/ci/lint` pattern in 06-hello-world-ci.
+https://gitlab.cern.ch/gfidalgo/ci-testing/-/ci/lint

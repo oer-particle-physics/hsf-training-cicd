@@ -1,0 +1,8 @@
+module github.com/hsf-training/hsf-training-cicd
+
+go 1.26
+
+require (
+	github.com/imfing/hextra v0.12.3 // indirect
+	github.com/oer-particle-physics/hugo-styles v0.6.0 // indirect
+)

@@ -9,19 +9,17 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/hsf-training/hsf-training-cicd/gh-pages.svg)](https://results.pre-commit.ci/latest/github/hsf-training/hsf-training-cicd/gh-pages)
-[![pages-build-deployment](https://github.com/hsf-training/hsf-training-cicd/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/hsf-training/hsf-training-cicd/actions/workflows/pages/pages-build-deployment)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/oer-particle-physics/hsf-training-cicd/gh-pages.svg)](https://results.pre-commit.ci/latest/github/oer-particle-physics/hsf-training-cicd/gh-pages)
+[![Deploy lesson](https://github.com/oer-particle-physics/hsf-training-cicd/actions/workflows/pages.yml/badge.svg)](https://github.com/oer-particle-physics/hsf-training-cicd/actions/workflows/pages.yml)
 
-This repository generates the corresponding lesson website from [The Carpentries](https://carpentries.org/) repertoire of lessons.
+This repository builds the lesson website with [Hugo Styles][hugo-styles-quickstart].
 
 > **Note**
-> Click [here](https://hsf-training.github.io/hsf-training-cicd/) for the training website!
+> Click [here](https://oer-particle-physics.github.io/hsf-training-cicd/) for the training website!
 
 This learning module explores how to build CI/CD workflows and introduces key GitLab CI/CD concepts, with a focus on ensuring that code remains robust, reproducible, and well preserved.
 
 ## Contributing
-<!-- CENTRALLY MAINTAINED SECTION -->
-<!-- Remove the above marker to disable having this section be overwritten -->
 
 We welcome all contributions to improve the lesson! Maintainers will do their best to help you if you have any
 questions, concerns, or experience any difficulties along the way.
@@ -29,19 +27,9 @@ questions, concerns, or experience any difficulties along the way.
 If you make non-trivial changes (i.e., more than fixing a simple typo), you are eligible to be added to the [HSF Training Community page][hsf-training-community],
 as well as to the list of contributors [below](#contributors-).
 
-We'd like to ask you to familiarize yourself with our [Contribution Guide](CONTRIBUTING.md) and have a look at
-the [more detailed guidelines][lesson-example] on proper formatting, ways to render the lesson locally, and even
-how to write new episodes.
-
-Quick summary of how to get a local preview: Install [jekyll][jekyll] and then run
-
-```
-bundle install
-bundle update
-bundle exec jekyll serve
-```
-
-Unless we change framework versions, only the last command needs to be typed after the first time.
+Please read our [Contribution Guide](CONTRIBUTING.md). For installation and local previews,
+see the [Hugo Styles quickstart][hugo-styles-quickstart]; for editing lessons, see the
+[authoring guide][hugo-styles-authoring].
 
 Before committing anything, we also ask you to install the [pre-commit][pre-commit] hooks of this repository:
 
@@ -56,7 +44,6 @@ nicely explained in the chapter [Contributing to a Project][progit] in Pro Git
 by Scott Chacon.
 Look for the tag [![good_first_issue]][gfi-badge], which marks particularly simple issues to get you started.
 
-<!-- END CENTRALLY MAINTAINED SECTION -->
 ## Authors
 
 This lesson was written by
@@ -106,15 +93,15 @@ The materials developed here are published under open licenses (CC BY 4.0) and c
 
 See the Zenodo record [here](https://doi.org/10.5281/zenodo.22016960).
 
-[lesson-example]: https://carpentries.github.io/lesson-example
+[hugo-styles-quickstart]: https://oer-particle-physics.github.io/hugo-styles/docs/quickstart/
+[hugo-styles-authoring]: https://oer-particle-physics.github.io/hugo-styles/docs/authoring/
 [pre-commit]: https://pre-commit.com/
 [hsf-training-community]: https://hepsoftwarefoundation.org/training/community
 [hsf-training-center]: https://hepsoftwarefoundation.org/training/curriculum.html
 [training-center-badge]: https://img.shields.io/badge/HSF%20Training%20Center-browse-ff69b4
 [schools]: https://hepsoftwarefoundation.org/Schools/events.html
-[issues]: https://github.com/hsf-training/hsf-training-cicd/issues
+[issues]: https://github.com/oer-particle-physics/hsf-training-cicd/issues
 [progit]: http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project
-[jekyll]: https://jekyllrb.com/
 [allcontrib-emoji-key]: https://allcontributors.org/docs/en/emoji-key
 [gfi-badge]: https://img.shields.io/badge/-good%20first%20issue-gold.svg
 [schools-badge]: https://img.shields.io/badge/upcoming%20events-browse-ff69b4

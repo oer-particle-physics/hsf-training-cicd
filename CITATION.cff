@@ -54,7 +54,7 @@ keywords:
   - "CI/CD"
   - "Workflow Automation"
   - "Exit Codes"
-repository-code: https://github.com/hsf-training/hsf-training-cicd
-url: https://hsf-training.github.io/hsf-training-cicd/
+repository-code: https://github.com/oer-particle-physics/hsf-training-cicd
+url: https://oer-particle-physics.github.io/hsf-training-cicd/
 doi: 10.5281/zenodo.22016960
 license: CC-BY-4.0

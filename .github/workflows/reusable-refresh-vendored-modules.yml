@@ -1,0 +1,90 @@
+# x-release-please-version: v0.6.0
+name: Reusable Refresh Vendored Modules
+
+on:
+  workflow_call:
+    inputs:
+      site-root:
+        type: string
+        default: "."
+      go-version-file:
+        type: string
+        default: "go.mod"
+      refresh-command:
+        type: string
+        default: ""
+      verify-command:
+        type: string
+        default: ""
+      pr-branch:
+        type: string
+        default: "chore/refresh-vendored-hugo-modules"
+      pr-title:
+        type: string
+        default: "chore: refresh vendored Hugo modules"
+      pr-body:
+        type: string
+        default: ""
+      pr-labels:
+        type: string
+        default: "dependencies"
+    secrets:
+      WORKFLOW_SYNC_TOKEN:
+        required: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.site-root }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.164.0"
+          extended: true
+
+      - name: Setup Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: ${{ inputs.go-version-file }}
+
+      - name: Refresh module metadata and managed files
+        shell: bash
+        run: ${{ inputs.refresh-command }}
+
+      - name: Verify refreshed site build
+        if: ${{ inputs.verify-command != '' }}
+        shell: bash
+        run: ${{ inputs.verify-command }}
+
+      - name: Check workflow update credentials
+        shell: bash
+        env:
+          WORKFLOW_SYNC_TOKEN: ${{ secrets.WORKFLOW_SYNC_TOKEN }}
+        run: |
+          if [[ -n "${WORKFLOW_SYNC_TOKEN}" ]]; then
+            exit 0
+          fi
+
+          workflow_changes="$(git -C "${GITHUB_WORKSPACE}" status --porcelain --untracked-files=all -- .github/workflows)"
+          if [[ -n "${workflow_changes}" ]]; then
+            echo "::error title=WORKFLOW_SYNC_TOKEN required::The refresh changed files under .github/workflows/, but the WORKFLOW_SYNC_TOKEN repository secret is not configured. Add a fine-grained personal access token or GitHub App installation token with Contents, Pull requests, and Workflows read and write permissions. See https://oer-particle-physics.github.io/hugo-styles/docs/updates/"
+            exit 1
+          fi
+
+          echo "::warning title=WORKFLOW_SYNC_TOKEN not configured::No files under .github/workflows/ changed, so this refresh can continue with GITHUB_TOKEN. Configure WORKFLOW_SYNC_TOKEN before a future workflow update. See https://oer-particle-physics.github.io/hugo-styles/docs/updates/"
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.WORKFLOW_SYNC_TOKEN || github.token }}
+          branch: ${{ inputs.pr-branch }}
+          delete-branch: true
+          commit-message: ${{ inputs.pr-title }}
+          title: ${{ inputs.pr-title }}
+          body: ${{ inputs.pr-body }}
+          labels: ${{ inputs.pr-labels }}

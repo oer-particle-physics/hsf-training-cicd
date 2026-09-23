@@ -91,6 +91,14 @@ your clone of the originating `gh-pages` branch.
 Lastly, published copies of all the lessons are available in the `gh-pages` branch of the originating
 repository for reference while revising.
 
+## Maintaining the OER fork
+
+Use `feat/hugo-styles-upstream` for the pull request to `hsf-training/hsf-training-cicd`.
+Keep it in sync by applying each shared lesson or infrastructure fix to both that branch
+and `gh-pages`, cherry-picking shared commits when needed. Keep OER-specific repository
+and website links in separate commits on `gh-pages` and exclude those commits from the
+upstream branch.
+
 ## Other Resources
 
 More information on how to contribute or how to contact us: [HSF training home][hsf-training]
